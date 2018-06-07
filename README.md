@@ -33,6 +33,7 @@ $ docker container run \
 -p 8081:443 \
 --volume "$PWD/html":/usr/share/nginx/html \
 --volume "$PWD/conf":/etc/nginx \
+--volume "$PWD/log":/var/log \
 --rm \
 --name mynginx \
 nginx
@@ -81,6 +82,7 @@ $ mkdir html && cd html && echo "<h1>Hello World!</h1>" > index.html
 
 ```shell
 $ docker container cp mynginx:/etx/nginx . && mv nginx conf
+$ docker contianer cp mynginx:/var/log .
 ```
 
 同样上面启动容器的命令会将容器中的 `/etc/nginx` 映射为本地当前操作目录下的 `conf`
@@ -168,7 +170,7 @@ server {
 # 在 nginx@1.9.5 之后 nginx 支持 http2
 listen 443 ssl http2;
 
-# 这里填写证书文件的路径即可，我这里比较喜欢写绝对路径 
+# 这里填写证书文件的路径即可，我这里比较喜欢写绝对路径
 ssl_certificate           ssl/certificate.crt;
 ssl_certificate_key       ssl/key.key
 
