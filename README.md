@@ -34,7 +34,7 @@ $ docker container run \
 --volume "$PWD/html":/usr/share/nginx/html \
 --volume "$PWD/conf":/etc/nginx \
 --rm \
---name mynginx
+--name mynginx \
 nginx
 ```
 
